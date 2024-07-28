@@ -26,23 +26,26 @@ for i in range(0, len(data)):
         transcript = transcriptions[j]
         
         for k, label in enumerate(data[i]['label']):
-            if 'Title' in label['labels'] and title == "":
+            if  title != "":
+                break
+            if 'Title' in label['labels']:
                 title = transcriptions[k]
                 x1_title, y1_title = int(label['x'] * original_width / 100), int(label['y'] * original_height / 100)
-                x3_title, y3_title = int((bboxes[j]['x'] + bboxes[j]['width']) * original_width / 100), int((bboxes[j]['y'] + bboxes[j]['height']) * original_height / 100)
+                x3_title, y3_title = int((bboxes[k]['x'] + bboxes[k]['width']) * original_width / 100), int((bboxes[k]['y'] + bboxes[k]['height']) * original_height / 100)
                 break
         
-        if title != "" and k != j:
-            if x1 >= x1_title and y1 >= y1_title and x3 <= x3_title and y3 <= y3_title:
+        if title != "":
+            if x1 > x1_title and y1 > y1_title and x3 < x3_title and y3 < y3_title:
                 continue                
         
         lst.append([x1, y1, x2, y2, x3, y3, x4, y4, transcript])
 
     # show image
-    img = cv2.imread('./Data/Cropped/' + re.split('/ |-', data[i]['ocr'])[-1])
+    img = cv2.imread('./Data/Cropped/' + re.split('-', data[i]['ocr'])[-1])
     for x1, y1, x2, y2, x3, y3, x4, y4, transcript in lst:
         cv2.rectangle(img, (x1, y1), (x3, y3), (0, 255, 0), 1)
-    # set window's width
+
+    # show img
     cv2.imshow('image', img)
     cv2.waitKey(0)
 
