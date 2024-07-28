@@ -12,7 +12,7 @@ for i in range(0, len(data)):
     transcriptions = data[i]['transcription']
     file_name = re.split('/ |-', data[i]['ocr'])[-1].replace('.jpg', '.txt')
     title = ""
-    lst = []
+    # lst = []
 
     for j in range(0, len(bboxes)):
         original_width = bboxes[j]['original_width']
@@ -38,19 +38,20 @@ for i in range(0, len(data)):
             if x1 > x1_title and y1 > y1_title and x3 < x3_title and y3 < y3_title:
                 continue                
         
-        lst.append([x1, y1, x2, y2, x3, y3, x4, y4, transcript])
+        # Create a file and write to it
+        with open(f'./Data/CRAFT/gt_{file_name}', 'a', encoding="utf8") as file:
+            file.write(f'{x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4},{transcript}\n')
+            
+    #     lst.append([x1, y1, x2, y2, x3, y3, x4, y4, transcript])
 
-    # show image
-    img = cv2.imread('./Data/Cropped/' + re.split('-', data[i]['ocr'])[-1])
-    for x1, y1, x2, y2, x3, y3, x4, y4, transcript in lst:
-        cv2.rectangle(img, (x1, y1), (x3, y3), (0, 255, 0), 1)
+    # # show image
+    # img = cv2.imread('./Data/Cropped/' + re.split('-', data[i]['ocr'])[-1])
+    # for x1, y1, x2, y2, x3, y3, x4, y4, transcript in lst:
+    #     cv2.rectangle(img, (x1, y1), (x3, y3), (0, 255, 0), 1)
 
-    # show img
-    cv2.imshow('image', img)
-    cv2.waitKey(0)
+    # # show img
+    # cv2.imshow('image', img)
+    # cv2.waitKey(0)
 
-        # # Create a file and write to it
-        # with open(f'./Data/CRAFT/gt_{file_name}', 'a', encoding="utf8") as file:
-        #     file.write(f'{x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4},{transcript}\n')
 
         
