@@ -39,7 +39,7 @@ for i in range(0, len(data)):
                 continue                
         
         # Create a file and write to it
-        with open(f'./Data/CRAFT/gt_{file_name}', 'a', encoding="utf8") as file:
+        with open(f'./Data/GT_localization_transcription/gt_{file_name}', 'a', encoding="utf8") as file:
             file.write(f'{x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4},{transcript}\n')
             
     #     lst.append([x1, y1, x2, y2, x3, y3, x4, y4, transcript])
