@@ -13,6 +13,16 @@ training_gt_path = './Data/CRAFT/data_root_dir/ch4_training_localization_transcr
 test_img_path = './Data/CRAFT/data_root_dir/ch4_test_images'
 test_gt_path = './Data/CRAFT/data_root_dir/ch4_test_localization_transcription_gt'
 
+# make dir
+if not os.path.exists(training_img_path):
+    os.makedirs(training_img_path)
+if not os.path.exists(training_gt_path): 
+    os.makedirs(training_gt_path)
+if not os.path.exists(test_img_path):
+    os.makedirs(test_img_path)
+if not os.path.exists(test_gt_path):
+    os.makedirs(test_gt_path)
+
 random.shuffle(txtnames)
 
 for item in txtnames:
