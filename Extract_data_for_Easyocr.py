@@ -6,6 +6,8 @@ import cv2
 with open('./Data/label_detail_min.json',  encoding="utf8") as json_file:
     data = json.load(json_file)
 
+recognition_ocr_list = []
+
 # extract data
 for i in range(0, len(data)):
     bboxes = data[i]['bbox']
@@ -38,9 +40,17 @@ for i in range(0, len(data)):
             if x1 > x1_title and y1 > y1_title and x3 < x3_title and y3 < y3_title:
                 continue                
         
-        # Create a file and write to it
+        # Create a file and write to it for CRAFT
         with open(f'./Data/GT_localization_transcription/gt_{file_name}', 'a', encoding="utf8") as file:
             file.write(f'{x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4},{transcript}\n')
+        
+        # Crop the image for recognition_ocr
+        img = cv2.imread('./Data/Cropped/' + re.split('-', data[i]['ocr'])[-1])
+        crop_img = img[y1:y3, x1:x3]
+        cropped_file_name = file_name.replace('.txt', f'_{j}.jpg')
+        cv2.imwrite(f'./Data/Recognition_ocr/{cropped_file_name}', crop_img)
+
+        recognition_ocr_list.append({'file_name': cropped_file_name, 'transcript': transcript})
             
     #     lst.append([x1, y1, x2, y2, x3, y3, x4, y4, transcript])
 
@@ -53,5 +63,11 @@ for i in range(0, len(data)):
     # cv2.imshow('image', img)
     # cv2.waitKey(0)
 
+# Write to a csv file
+import csv
 
-        
+with open('./Data/Recognition_ocr/labels.csv', 'w', newline='', encoding="utf8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["file_name", "transcript"])
+    for data in recognition_ocr_list:
+        writer.writerow([data['file_name'], data['transcript']])
