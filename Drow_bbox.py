@@ -35,10 +35,10 @@ for i in range(0, len(data)):
     # show image
     img = cv2.imread('./Data/Cropped/' + re.split('-', data[i]['ocr'])[-1])
     for x1, y1, x3, y3, transcript in lst:
-        cv2.rectangle(img, (x1, y1), (x3, y3), (0, 255, 0), 1)
+        cv2.rectangle(img, (int(x1), int(y1)), (int(x3), int(y3)), (0, 255, 0), 1)
 
         if transcript[0] < 'z' and transcript[0] > 'A' or transcript[0] >= '0' and transcript[0] <= '9':
-            cv2.putText(img, transcript, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+            cv2.putText(img, transcript, (int(x1), int(y1) - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
         else:
             # put persian text on image
             reshaped_text = arabic_reshaper.reshape(transcript) # correct its shape
@@ -46,7 +46,7 @@ for i in range(0, len(data)):
             img_pil = Image.fromarray(img)
             draw = ImageDraw.Draw(img_pil)
             font = ImageFont.truetype('./Data/Fonts/BYekan.ttf', 30)
-            draw.text((x1, y1 - 15), bidi_text, font=font, fill=(255, 0, 0))
+            draw.text((int(x1), int(y1) - 15), bidi_text, font=font, fill=(255, 0, 0))
             img = np.array(img_pil)
         
     # write img
