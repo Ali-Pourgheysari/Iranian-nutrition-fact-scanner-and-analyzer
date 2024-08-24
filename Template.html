@@ -1,0 +1,63 @@
+<style>
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        font-family: 'Arial', sans-serif;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+        transform: scale(1.02);
+        transition: all 0.3s ease-in-out;
+    }
+
+    td {
+        font-size: 1.1em;
+        color: #333;
+    }
+
+    table caption {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        color: #333;
+        font-weight: bold;
+    }
+    
+    .calories {
+        color: chocolate;
+    }
+</style>
+
+<table border="1">
+    <caption>Calories Burned by Exercise</caption>
+    <tr>
+        <th>Exercise type</th>
+        <th>Amount of time needed to burn <strong class="calories">{{calories}}</strong> Kcal per minute</th>
+    </tr>
+    {% for key, value in data.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+    {% endfor %}
+</table>
