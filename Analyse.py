@@ -5,6 +5,8 @@ from selenium import webdriver
 
 
 # Constants
+BODY_WEIGHT = 75
+
 MTEs = {
     'Slow walk': 3.3,
     'Fast walk': 4.5,
@@ -16,7 +18,7 @@ MTEs = {
     'Slow swim': 8.3,
     'Moderate swim': 10,
     'Jump rope': 11,
-    'Slow run': 12.3,
+    'Moderate run': 12.3,
 }
 
 PERSIAN_DIC = {
@@ -36,7 +38,7 @@ PERSIAN_DIC = {
 def Find_certificate_number(bbox, text, img_x, img_y, output_path, file_name):
     # find bbox that is placed in the bottom left corner of the image
     (top_left, top_right, bottom_right, bottom_left) = bbox
-    if top_left[0] < img_x / 3 and bottom_right[1] > img_y * 2 / 3 and len(text) >= 8 and '/' in text:
+    if top_left[0] < img_x / 3 and bottom_right[1] > img_y * 2 / 3 and len(text) in [8, 9] and '/' in text:
         MakeCertificateFile(text, output_path, file_name)
 
 def MakeCertificateFile(text, output_path, file_name):
@@ -106,7 +108,7 @@ def ExtractNumber(text):
 
     return float(text[0]) if text else 0
 
-def Analyse(result, energy_mid_y, body_weight, output_path, file_name):
+def Analyse(result, energy_mid_y, output_path, file_name):
     earned_calories = SearchForCalories(result, energy_mid_y)
     if earned_calories != 0:
         print(earned_calories)
@@ -114,7 +116,7 @@ def Analyse(result, energy_mid_y, body_weight, output_path, file_name):
         time_to_burn_calories_per_exercise = {}
 
         for key, value in MTEs.items():
-            burned_calories_per_minute = 3.5 * body_weight * value / 200
+            burned_calories_per_minute = 3.5 * BODY_WEIGHT * value / 200
 
             time_to_burn_calories_per_exercise[key] = round(earned_calories / burned_calories_per_minute)
 
