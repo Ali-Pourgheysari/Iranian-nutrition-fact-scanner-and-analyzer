@@ -151,7 +151,7 @@ for i in range(0, len(data)):
 
             if combined_x1 != '':
                 crop_comb_img = img[combined_y1:combined_y3, combined_x1:combined_x3]
-            cropped_filename = filename.replace('.txt', f'_{j+aug}.jpg')
+            cropped_filename = filename.replace('.txt', f'_{j}_{aug}.jpg')
 
             if random.random() < train_split:
                 img_path = training_img_path_OCR
@@ -163,9 +163,8 @@ for i in range(0, len(data)):
                 writer.writerow([cropped_filename, transcript])
                 if combined_x1 != '':
                     writer.writerow([cropped_filename.replace('.jpg', '_comb.jpg'), combined_transcript])
-                cv2.imwrite(img_path + f'{cropped_filename}', crop_img)
-                if combined_x1 != '':
                     cv2.imwrite(img_path + f'{cropped_filename.replace(".jpg", "_comb.jpg")}', crop_comb_img)
+                cv2.imwrite(img_path + f'{cropped_filename}', crop_img)
         
         # save data for CRAFT
         txt = 'gt_' + filename.replace('.txt', f'_{aug}.txt')
