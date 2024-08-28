@@ -1,0 +1,8 @@
+network_params:
+  input_channel: 1
+  output_channel: 256
+  hidden_size: 256
+imgH: 64
+lang_list:
+         - 'fa'
+character_list: 0123456789۰۱۲۳۴۵۶۷۸۹/._-grkKcal ملی صفر ک اسیظ ها چب تس قد گم کوی بنژ  # write words
