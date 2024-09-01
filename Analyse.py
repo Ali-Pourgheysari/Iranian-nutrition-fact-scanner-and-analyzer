@@ -96,7 +96,10 @@ def SearchForCalories(result, energy_mid_y):
     for (bbox, text, prob) in result:
         (top_left, top_right, bottom_right, bottom_left) = bbox
         if top_left[1] < energy_mid_y < bottom_right[1]:
-            return ExtractNumber(text)
+            number = ExtractNumber(text)
+            if number != 0:
+                return number
+            
 
 
 def ExtractNumber(text):
