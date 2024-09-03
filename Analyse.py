@@ -92,15 +92,14 @@ def minDistance(word1, word2):
                 table[i][j] = 1 + min(table[i - 1][j], table[i][j - 1], table[i - 1][j - 1])
     return table[-1][-1]
 
-def SearchForCalories(result, energy_mid_y):
+def SearchForCalories(result, energy_q1, energy_y1):
     for (bbox, text, prob) in result:
         (top_left, top_right, bottom_right, bottom_left) = bbox
-        if top_left[1] < energy_mid_y < bottom_right[1]:
+        if any(top_left[1] < factor * energy_q1 + energy_y1 < bottom_right[1] for factor in [1, 2, 3]):
             number = ExtractNumber(text)
             if number != 0:
                 return number
             
-
 
 def ExtractNumber(text):
 
@@ -111,9 +110,9 @@ def ExtractNumber(text):
 
     return float(text[0]) if text else 0
 
-def Analyse(result, energy_mid_y, output_path, file_name):
-    earned_calories = SearchForCalories(result, energy_mid_y)
-    if earned_calories != 0:
+def Analyse(result, energy_q1, energy_y1, output_path, file_name):
+    earned_calories = SearchForCalories(result, energy_q1, energy_y1)
+    if earned_calories not in [0, None]:
         print(earned_calories)
         burned_calories_per_minute = 0
         time_to_burn_calories_per_exercise = {}
