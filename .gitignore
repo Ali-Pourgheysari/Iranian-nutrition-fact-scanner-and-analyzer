@@ -1,6 +1,5 @@
 /env
 /Data
-*.txt
 *.pyc
 *.pth
 *.pt
