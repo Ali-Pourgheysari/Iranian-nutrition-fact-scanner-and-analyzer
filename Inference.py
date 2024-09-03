@@ -63,7 +63,7 @@ class App:
         self.spinner_label.pack(pady=20)
         
         # Load spinning GIF frames
-        self.spinner_frames = [ImageTk.PhotoImage(Image.open(f"./Data/Spinner/{i}.png")) for i in range(1, 22)]
+        self.spinner_frames = [ImageTk.PhotoImage(Image.open(f"./Spinner/{i}.png")) for i in range(1, 22)]
         self.current_frame = 0
         self.animating = False
 
