@@ -14,7 +14,6 @@ from Analyse import isMatched, Analyse, Find_certificate_number
 from ultralytics import YOLO
 from PIL import Image, ImageTk
 import threading
-import time
 
 class App:
     def __init__(self, root):
@@ -109,13 +108,20 @@ class App:
         processing_thread = threading.Thread(target=self.run_processing)
         processing_thread.start()
 
+    def resize(self, image, min_height=1280):
+        # Resaize and keep aspect ratio
+        h, w = image.shape[:2]
+        scale = min_height / h
+        image = cv2.resize(image, (int(w * scale), int(h * scale)))
+        return image
+    
     def run_processing(self):
         try:
             # Load the custom YOLO model for object detection
             label_detection_model = YOLO("Models/Label_detection.pt") 
 
             # Load the custom CRAFT model
-            craft_save_pth = torch.load('Models/CRAFT_clr_amp_11000.pth', map_location='cpu')
+            craft_save_pth = torch.load('Models/CRAFT_clr_amp_34000_augmented.pth', map_location='cpu')
             craft_model = craft_save_pth["craft"]
 
             # Save the models separately for the detector and recognizer
@@ -154,10 +160,11 @@ class App:
                     # Read and crop the image based on the detected object
                     image = cv2.imread(img_file)
                     image = image[int(bbox[1]):int(bbox[3]), int(bbox[0]):int(bbox[2])]
-
+                    image = self.resize(image)
                     result = reader.readtext(image)
                     
-                    energy_mid_y = -1
+                    energy_q1 = -1
+                    energy_y1 = -1
                     
                     for (bbox, text, prob) in result:
                         (top_left, top_right, bottom_right, bottom_left) = bbox
@@ -176,14 +183,15 @@ class App:
                             image = np.array(img_pil)
 
                             if isMatched(text, 'انرژی'):
-                                energy_mid_y = (top_left[1] + bottom_right[1]) / 2
+                                energy_q1 = (bottom_right[1] - top_left[1]) / 4
+                                energy_y1 = top_left[1]
                             
-                            file_name = i.replace('.jpg', '')
-                            Find_certificate_number(bbox, text, image.shape[1], image.shape[0], self.output_path, file_name)
-                            
-                    if energy_mid_y != -1:
                         file_name = i.replace('.jpg', '')
-                        Analyse(result, energy_mid_y, self.output_path, file_name)
+                        Find_certificate_number(bbox, text, image.shape[1], image.shape[0], self.output_path, file_name)
+                            
+                    if energy_q1 != -1:
+                        file_name = i.replace('.jpg', '')
+                        Analyse(result, energy_q1, energy_y1, self.output_path, file_name)
                     
                     # Write the annotated image to the output directory
                     output_file = os.path.join(self.output_path, i)
