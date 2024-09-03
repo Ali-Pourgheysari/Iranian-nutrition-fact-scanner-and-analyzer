@@ -1,6 +1,5 @@
 
 /Data
-*.txt
 *.pyc
 *.pth
 *.pt
