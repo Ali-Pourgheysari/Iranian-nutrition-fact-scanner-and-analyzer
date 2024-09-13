@@ -70,11 +70,11 @@ The system showed high performance in both label detection and text recognition 
 
 you can see the results of the project in the following images:
 
-![Extracted Nutritional Information](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/Images/nutritional_label.jpg)
+![Extracted Nutritional Information](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/tree/main/Images/nutritional_label.jpg)
 
-![Calorie Analysis](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/Images/tabel.jpg)
+![Calorie Analysis](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/tree/main/Images/tabel.jpg)
 
-![Additional Product Details](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/Images/certificate.jpg)
+![Additional Product Details](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/tree/main/Images/certificate.png)
 
 ## Improvements
 
