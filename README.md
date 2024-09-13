@@ -16,7 +16,7 @@ In today’s fast-paced world, there is an increasing need for consumers to quic
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/your-repository.git
+    git clone https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer.git
     ```
 2. Install the required dependencies:
     ```bash
