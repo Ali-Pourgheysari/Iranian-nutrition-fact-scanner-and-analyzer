@@ -1,6 +1,6 @@
 # Food Product Information Extraction using Computer vision
 
-This project focuses on extracting nutritional information and technical details from food product images, utilizing machine learning models such as YOLOv8 and OCR (Optical Character Recognition) techniques. The system aims to help consumers make informed choices by providing easy access to detailed product information, including nutritional facts, technical product details, and activity-related calorie burn estimates. This project is completed for the thesis of my bachelor's degree and you can read the full thesis [here](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/blob/main/Documents/Thesis.pdf).
+This project focuses on extracting nutritional information and technical details from food product images, utilizing machine learning models such as YOLOv8 and OCR (Optical Character Recognition) techniques. The system aims to help consumers make informed choices by providing easy access to detailed product information, including nutritional facts, technical product details, and activity-related calorie burn estimates. This project is completed for the thesis of my bachelor's degree and you can read the full thesis in persian [here](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/blob/main/Documents/Thesis.pdf).
 
 ## Overview
 
