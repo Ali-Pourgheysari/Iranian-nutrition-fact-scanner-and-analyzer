@@ -36,7 +36,7 @@ In today’s fast-paced world, there is an increasing need for consumers to quic
 ## Models
 
 ### YOLOv8 for Label Detection
-YOLOv8 is used for detecting product labels in images. Its lightweight architecture allows for real-time performance while maintaining high accuracy in object detection tasks.
+YOLOv8 is used for detecting product labels in images. Its lightweight architecture allows fast performance while maintaining high accuracy in object detection tasks.
 
 ### CRAFT for Text Detection
 CRAFT (Character Region Awareness for Text Detection) is used to detect text regions in images. This model is capable of detecting text of various sizes and orientations, making it suitable for extracting information from product labels.
