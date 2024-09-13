@@ -69,7 +69,7 @@ The system showed high performance in both label detection and text recognition 
   - NED: 96.9%
 
 you can see the results of the project in the following images:
-![Additional Product Details](certificate.png) ![Extracted Nutritional Information](nutritional_label.jpg) ![Calorie Analysis](tabel.jpg)
+![Extracted Nutritional Information](nutritional_label.jpg) ![Calorie Analysis](tabel.jpg) ![Additional Product Details](certificate.png)
 
 ## Improvements
 
