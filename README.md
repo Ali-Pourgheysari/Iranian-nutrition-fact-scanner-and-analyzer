@@ -1,6 +1,6 @@
 # Food Product Information Extraction using Computer vision
 
-This project focuses on extracting nutritional information and technical details from food product images, utilizing machine learning models such as YOLOv8 and OCR (Optical Character Recognition) techniques. The system aims to help consumers make informed choices by providing easy access to detailed product information, including nutritional facts, technical product details, and activity-related calorie burn estimates.
+This project focuses on extracting nutritional information and technical details from food product images, utilizing machine learning models such as YOLOv8 and OCR (Optical Character Recognition) techniques. The system aims to help consumers make informed choices by providing easy access to detailed product information, including nutritional facts, technical product details, and activity-related calorie burn estimates. This project is completed for the thesis of my bachelor's degree and you can read the full thesis [here](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/blob/main/Documents/Thesis.pdf).
 
 ## Overview
 
@@ -50,7 +50,7 @@ Data augmentation techniques, such as rotation, scaling, and brightness adjustme
 
 ## Evaluation
 
-The models were evaluated using key metrics such as accuracy, precision, recall, and normalized edit distance (NED). The evaluation was conducted on a test set comprising 20% of the entire dataset.
+The models were evaluated using key metrics such as accuracy, precision, recall, H-mean, and normalized edit distance (NED). The evaluation was conducted on a test set comprising 20% of the entire dataset.
 
 ## Results
 
@@ -58,13 +58,23 @@ The system showed high performance in both label detection and text recognition 
 - **YOLOv8 Performance**:
   - Precision: 99%
   - Recall: 99%
+
 - **CRAFT Performance**:
   - Precision: 96.1%
   - Recall: 92%
   - H-mean: 94%
+
 - **TPS-ResNet-BiLSTM-Attn**:
   - Accuracy: 88.5%
   - NED: 96.9%
+
+you can see the results of the project in the following images:
+
+![Extracted Nutritional Information](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/Images/nutritional_label.jpg)
+
+![Calorie Analysis](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/Images/tabel.jpg)
+
+![Additional Product Details](https://github.com/Ali-Pourgheysari/Iranian-nutrition-fact-scanner-and-analyzer/Images/certificate.jpg)
 
 ## Improvements
 
